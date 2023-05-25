@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ProductCart } from 'src/app/models/product.model';
+import { ExportDocumentService } from 'src/app/services/utilities/export-document/export-document.service';
 import { editProductQuantity, emptyCart, removeProduct } from 'src/app/state/actions/shipping-cart.actions';
 import { AppState } from 'src/app/state/app.state';
 import { selectProductscart } from 'src/app/state/selectors/shipping-cart.selectors';
@@ -14,7 +15,7 @@ import { selectProductscart } from 'src/app/state/selectors/shipping-cart.select
 })
 export class CartDetailComponent implements OnInit {
 
-  public productsCartShipping$: Observable<any> = new Observable();
+  public productsCartShipping!: ReadonlyArray<ProductCart>
   public totalItems: number = 0;
   public totalPriceItems: number = 0;
   public discounts: number = 0;
@@ -23,6 +24,7 @@ export class CartDetailComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private router: Router,
+    private exportDocumentService: ExportDocumentService
   ) { }
 
   ngOnInit(): void {
@@ -30,10 +32,10 @@ export class CartDetailComponent implements OnInit {
   }
 
   private getProducts() {
-    this.productsCartShipping$ = this.store.select(selectProductscart);
-    this.productsCartShipping$.subscribe( products => {
-      this.totalItems = products.reduce(( sum: number, product: ProductCart) => sum + product.quantity, 0)
-      this.totalPriceItems = products.reduce( (sum: number, product: ProductCart) => sum + (product.quantity * product.price), 0);
+    this.store.select(selectProductscart).subscribe(products => {
+      this.productsCartShipping = products;
+      this.totalItems = products.reduce((sum: number, product: ProductCart) => sum + product.quantity, 0)
+      this.totalPriceItems = products.reduce((sum: number, product: ProductCart) => sum + (product.quantity * product.price), 0);
       this.discounts = this.totalPriceItems * 0.01;
       this.shipment = this.totalPriceItems * 0.02;
     })
@@ -59,4 +61,11 @@ export class CartDetailComponent implements OnInit {
     this.store.dispatch(emptyCart());
   }
 
+  public exportCsv() {
+    this.exportDocumentService.exportToCSV([...this.productsCartShipping], 'shipping-cart');
+  }
+
+  public exportExcel() {
+      this.exportDocumentService.exportToXLS([...this.productsCartShipping], 'shipping-cart', 'hoja-1');
+  }
 }

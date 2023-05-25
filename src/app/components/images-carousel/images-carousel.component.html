@@ -1,7 +1,7 @@
 <div class="carousel">
     <div class="carousel-container" [style.transform]="'translateX(-' + slideIndex * 100 + '%)'">
         <div class="slide" *ngFor="let product of products" (click)="clickImage(product.id)">
-            <img class="slide__image" [src]="product.images[0]" [alt]="product.title" >
+            <img class="slide__image" [src]="(product.images[0] | imageValidation) | async" [alt]="product.title" >
             <h1>{{ product.title }}</h1>
             <h4>{{product.price | currency}}</h4>
         </div>

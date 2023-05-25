@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
   }
 
   private getProducts() {
-    this.store.dispatch(loadProducts())
+    this.store.dispatch(loadProducts({offset: 0}))
   }
 }

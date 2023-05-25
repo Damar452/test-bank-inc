@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Action, Store, select } from '@ngrx/store';
+import { Observable, filter } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
-import { selectListProducts } from '../../state/selectors/products.selectors';
+import { selectLastAction, selectListProducts } from '../../state/selectors/products.selectors';
 import { ProductCart } from 'src/app/models/product.model';
 import { addProduct, removeProduct } from 'src/app/state/actions/shipping-cart.actions';
-import { selectProductscart } from 'src/app/state/selectors/shipping-cart.selectors';
 
 @Component({
   selector: 'app-principal',
@@ -16,6 +15,9 @@ import { selectProductscart } from 'src/app/state/selectors/shipping-cart.select
 export class PrincipalComponent implements OnInit {
 
   public products$: Observable<any> = new Observable();
+  public lastAction!: Action | null;
+  public pageIndex: number = 0;
+  public pagination: number = 10;
 
   constructor(
     private router: Router,
@@ -24,6 +26,7 @@ export class PrincipalComponent implements OnInit {
 
   ngOnInit(): void {  
     this.getProducts();
+    this.getLastAction();
   }
 
   private getProducts() {
@@ -42,4 +45,17 @@ export class PrincipalComponent implements OnInit {
     this.store.dispatch(removeProduct({id}));
   }
 
+  public getLastAction() {
+    this.store.select(selectLastAction).subscribe( action => {
+      const newAction = {...action} as any;
+      this.pageIndex = newAction?.offset / 10 ;
+      this.lastAction = action;
+    });
+  }
+
+  public onChangePaginator(offset: number) {
+    if(this.lastAction) {
+      this.store.dispatch({...this.lastAction, offset});
+    }
+  }
 }

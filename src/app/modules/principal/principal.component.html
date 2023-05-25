@@ -1,17 +1,25 @@
-<app-images-carousel [products]="products$ | async" [intervalTime]="3000"
-    (onClickImage)="goToDetail($event)"></app-images-carousel>
+<ng-container *ngIf="(products$ | async).length > 0; else empty">
+    <app-images-carousel [products]="products$ | async" [intervalTime]="3000"
+        (onClickImage)="goToDetail($event)"></app-images-carousel>
 
-<div class="products-container">
-    <h1 class="products-list__title">Lista de productos</h1>
-    <hr>
-    <app-paginator></app-paginator>
-    <div class="products-list">
-        <app-product-card-general *ngFor="let product of products$ | async" 
-            [product]="product"
-            (onClickImage)="goToDetail($event)" 
-            (onSaveInCart)="saveInCart($event)"
-            (onRemoveProduct)="removeProduct($event)"
-            >
-        </app-product-card-general>
+    <div class="products-container">
+        <h1 class="products-list__title">Lista de productos</h1>
+        <hr class="hr">
+        <div class="paginator">
+            <app-paginator [pageIndex]="pageIndex" [pagination]="pagination" [dataQuantity]="(products$ | async).length"
+                (pageIndexChanged)="onChangePaginator($event)"></app-paginator>
+        </div>
+        <div class="products-list">
+            <app-product-card-general *ngFor="let product of products$ | async" [product]="product"
+                (onClickImage)="goToDetail($event)" (onSaveInCart)="saveInCart($event)"
+                (onRemoveProduct)="removeProduct($event)">
+            </app-product-card-general>
+        </div>
     </div>
-</div>
+</ng-container>
+
+<ng-template #empty>
+    <div class="empty">
+        <h1 class="empty__text">¡Lo sentimos, no tenemos resultados para esta busqueda!</h1>
+    </div>
+</ng-template>

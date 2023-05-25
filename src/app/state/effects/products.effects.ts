@@ -6,7 +6,6 @@ import { ProductsService } from 'src/app/services/bussiness/products/products.se
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-
 @Injectable()
 export class ProductEffects {
 
@@ -18,8 +17,8 @@ export class ProductEffects {
   loadProducts$ = createEffect((): Observable<Action> =>
     this.actions$.pipe(
       ofType(loadProducts),
-      switchMap(() =>
-        this.productService.getProducts().pipe(
+      switchMap((action) =>
+        this.productService.getProducts(action.offset).pipe(
           map(products => loadedProducts({ products }))
         )
       )
@@ -30,7 +29,7 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(loadProductsByTitle),
       switchMap(action =>
-        this.productService.getProductByTitle(action.title).pipe(
+        this.productService.getProductByTitle(action.title, action.offset).pipe(
           map(products => loadedProducts({ products }))
         )
       )
@@ -41,7 +40,7 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(loadProductsByCategory),
       switchMap(action =>
-        this.productService.getProductsByCategory(action.id).pipe(
+        this.productService.getProductsByCategory(action.id, action.offset).pipe(
           map(products => loadedProducts({ products }))
         )
       )

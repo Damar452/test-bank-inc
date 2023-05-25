@@ -7,8 +7,7 @@ import { ProductCardDetailComponent } from './product-card-detail/product-card-d
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     HeaderComponent,
@@ -29,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProductCardDetailComponent,
     PaginatorComponent
   ],
-  providers: [HttpClientModule]
+  providers: [
+    HttpClientModule
+  ]
 })
 export class ComponentsModule { }

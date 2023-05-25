@@ -51,6 +51,24 @@
   }
 }
 
+.export-files {
+  margin: 20px 0;
+
+  &__button {
+    height: auto;
+    width: auto;
+    border: none;
+    font-size: 40px;
+
+    &--excel {
+      // background-color: #006D37;
+      color:  #006D37;;
+    }
+  }
+
+
+}
+
 /* Media query para ajuste en pantallas más pequeñas */
 @media (max-width: 768px) {
   .products-list {

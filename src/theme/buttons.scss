@@ -15,7 +15,8 @@
     }
 
     &-primary:disabled {
-        background-color: $color-grey
+        background-color: $color-grey-soft;
+        color: $color-white;
     }
 
     &-secondary {
@@ -27,11 +28,6 @@
         background-color: $color-grey-soft;
         color: $color-white;
         border: none;
-    }
-
-    &-secondary:hover {
-        background-color: $color-primary;
-        color: $color-white;
     }
 
     &-tertiary {

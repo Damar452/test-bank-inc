@@ -1,6 +1,6 @@
 <div class="card" *ngIf="product">
   <div class="card-image">
-    <img class="card-image__img" [src]="product.images[0]" alt="Imagen del Producto">
+    <img class="card-image__img" [src]="(product.images[0] | imageValidation) | async" alt="Imagen del Producto">
   </div>
   <div class="card-content">
     <h1>{{ product.title }}</h1>

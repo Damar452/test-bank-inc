@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Product, ProductCart } from 'src/app/models/product.model';
+import { ProductCart } from 'src/app/models/product.model';
 
 // Agregar un producto al carrito
 export const addProduct = createAction(

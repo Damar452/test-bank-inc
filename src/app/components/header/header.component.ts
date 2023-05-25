@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
 import { CategoriesService } from 'src/app/services/bussiness/categories/categories.service';
 import { loadProductsByCategory, loadProductsByTitle } from 'src/app/state/actions/products.actions';
+import { AppState } from 'src/app/state/app.state';
+import { selectLastAction } from 'src/app/state/selectors/products.selectors';
 import { selectTotalProductsCart } from 'src/app/state/selectors/shipping-cart.selectors';
 
 @Component({
@@ -23,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store<any>,
+    private store: Store<AppState>,
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
   ) { }
@@ -41,22 +43,23 @@ export class HeaderComponent implements OnInit {
   public onSearch() {
     if(this.searchForm.valid) {
       const text = this.searchForm.get('searchText')!.value;
-      this.getProducts(text);
+      this.getProductsByTitle(text);
     }
   }
 
   public onClear() {
-    this.getProducts();
+    this.getProductsByTitle();
   }
 
   public getProductsBycategory(id:number) {
     this.categorySelected = id;
-    this.store.dispatch(loadProductsByCategory({id}))
+    this.store.dispatch(loadProductsByCategory({id, offset: 0}));
+    this.router.navigate(['/']);
   }
 
-  private getProducts(text: string = '') {
+  private getProductsByTitle(text: string = '') {
     this.categorySelected = 0;
-    this.store.dispatch(loadProductsByTitle({title: text}))
+    this.store.dispatch(loadProductsByTitle({title: text, offset: 0}))
   }
 
   private getShippingQuantity() {

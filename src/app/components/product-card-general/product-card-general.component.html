@@ -1,6 +1,6 @@
 <div class="product-card">
     <div class="product-image image-zoom" (click)="clickImage(product.id)">
-        <img class="product-image__img" [src]="product.images[0]" [alt]="product.title">
+        <img class="product-image__img" [src]="(product.images[0] | imageValidation) | async" [alt]="product.title">
     </div>
     <div class="product-details">
         <h4 class="product-details__title">{{ product.title }}</h4>

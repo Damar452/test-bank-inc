@@ -1,16 +1,22 @@
-import { createReducer, on } from '@ngrx/store';
-import { loadProducts, loadedProducts } from '../actions/products.actions';
+import { createReducer, on, Action } from '@ngrx/store';
+import { loadProducts, loadProductsByCategory, loadProductsByTitle, loadedProducts } from '../actions/products.actions';
 import { ProductsState } from '../../models/state/products.state';
 
 
-export const initialState: ProductsState = { loading: false, products: [] }
+export const initialState: ProductsState = { products: [], lastAction: null }
 
 export const productsReducer = createReducer(
     initialState,
-    on(loadProducts, (state) => {
-        return { ...state, loading: true }
+    on(loadProducts, (state, action) => {
+        return { ...state, lastAction: action }
+    }),
+    on(loadProductsByTitle, (state, action) => {
+        return { ...state, lastAction: action }
+    }),
+    on(loadProductsByCategory, (state, action) => {
+        return { ...state, lastAction: action }
     }),
     on(loadedProducts, (state, { products }) => {
-        return { ...state, loading: false, products }
+        return { ...state, products }
     }),
 )

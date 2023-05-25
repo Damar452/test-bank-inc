@@ -1,7 +1,8 @@
 import { Product } from "../product.model";
+import { Action } from '@ngrx/store';
 
 
 export interface ProductsState {
-    loading: boolean,
-    products: ReadonlyArray<Product>
+    products: ReadonlyArray<Product>,
+    lastAction: Action | null,
 }

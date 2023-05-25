@@ -9,7 +9,7 @@ export const selectListProducts = createSelector(
     (state: ProductsState) => state.products
 );
 
-export const selectLoading = createSelector(
+export const selectLastAction = createSelector(
     selectProductsFeature,
-    (state: ProductsState) => state.loading
+    (state: ProductsState) => state.lastAction
 );

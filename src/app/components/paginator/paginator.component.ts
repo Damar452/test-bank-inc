@@ -7,8 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PaginatorComponent implements OnInit {
 
+  @Input() dataQuantity: number = 0;
   @Input() pageIndex: number = 0;
-
+  @Input() pagination: number = 10;
   @Output() pageIndexChanged = new EventEmitter<number>();
 
   constructor() { }
@@ -19,13 +20,14 @@ export class PaginatorComponent implements OnInit {
   onPrevPage() {
     if (this.pageIndex > 0) {
       this.pageIndex--;
-      this.pageIndexChanged.emit(this.pageIndex);
+      this.pageIndexChanged.emit(this.pageIndex * this.pagination);
     }
   }
 
   onNextPage() {
-    this.pageIndex++;
-    this.pageIndexChanged.emit(this.pageIndex);
+    if(this.dataQuantity >= this.pagination) {
+      this.pageIndex++;
+      this.pageIndexChanged.emit(this.pageIndex * this.pagination);
+    }
   }
-
 }

@@ -13,20 +13,19 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<Product[]>  {
-    return this.http.get<Product[]>(this.api+'?offset=0&limit=10');
+  public getProducts(offset: number): Observable<Product[]>  {
+    return this.http.get<Product[]>(this.api+`?offset=${offset}&limit=10`);
   }
 
   public getProductbyId(id: string): Observable<ProductCart>  {
     return this.http.get<ProductCart>(this.api + `/${id}`);
   }
 
-  public getProductByTitle(title: string): Observable<Product[]> {
-    console.log(title)
-    return this.http.get<Product[]>(this.api + `?title=${title}&offset=0&limit=10`);
+  public getProductByTitle(title: string, offset: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api + `?title=${title}&offset=${offset}&limit=10`);
   }
 
-  public getProductsByCategory(categoryId: number): Observable<Product[]> {
-    return this.http.get<Product[]>(this.api + `?categoryId=${categoryId}&offset=0&limit=10`);
+  public getProductsByCategory(categoryId: number, offset: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api + `?categoryId=${categoryId}&offset=${offset}&limit=10`);
   }
 }

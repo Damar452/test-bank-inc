@@ -1,6 +1,23 @@
-
 .products-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.empty {
+  margin: 0 auto;
+  &__text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.products-container {
+  display: flex;
+  flex-direction: column; 
+}
+
+.paginator {
+  margin-left: auto;
+  width: 200px;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Product, ProductCart } from 'src/app/models/product.model';
+import { ProductCart } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/bussiness/products/products.service';
 import { addProduct, removeProduct } from 'src/app/state/actions/shipping-cart.actions';
 import { AppState } from 'src/app/state/app.state';
