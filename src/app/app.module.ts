@@ -8,6 +8,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { CartEffects } from './state/effects/shipping-cart.effects';
+import { ProductEffects } from './state/effects/products.effects';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { ROOT_REDUCERS } from './state/app.state';
     HttpClientModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
+    EffectsModule.forRoot([CartEffects, ProductEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

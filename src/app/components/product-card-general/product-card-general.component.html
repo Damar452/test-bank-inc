@@ -1,7 +1,6 @@
 <div class="product-card">
     <div class="product-image image-zoom" (click)="clickImage(product.id)">
-        <img class="product-image__img" [src]="product.images[0]"
-            alt="Producto">
+        <img class="product-image__img" [src]="product.images[0]" [alt]="product.title">
     </div>
     <div class="product-details">
         <h4 class="product-details__title">{{ product.title }}</h4>
@@ -10,18 +9,20 @@
         <h5 *ngIf="isCartView" class="product-details__price"><small>Tot. </small> {{ total | currency }}</h5>
     </div>
     <div class="cart-menu">
-        <div class="button-container" >
+        <div class="button-container">
             <ng-container *ngIf="!isShippingCart">
-                <button class="btn btn-icon cart-menu__cart-button" (click)="saveCart()"><i [ngClass]="isCartView ? 'fas fa-sync-alt' : 'fas fa-cart-arrow-down'"></i></button>
-                <button class="btn btn-icon cart-menu__cart-controls" (click)="substract()"> <i class="fas fa-minus"></i></button>
+                <button class="btn btn-icon cart-menu__cart-button" (click)="saveCart()"><i
+                        [ngClass]="isCartView ? 'fas fa-sync-alt' : 'fas fa-cart-arrow-down'"></i></button>
+                <button class="btn btn-icon cart-menu__cart-controls" (click)="substract()"> <i
+                        class="fas fa-minus"></i></button>
                 <button class="btn btn-secondary cart-menu__cart-controls">{{ articlesQuantity }}</button>
-                <button class="btn btn-icon cart-menu__cart-controls" (click)="addCounter()"><i class="fas fa-plus"></i></button>
+                <button class="btn btn-icon cart-menu__cart-controls" (click)="addCounter()"><i
+                        class="fas fa-plus"></i></button>
             </ng-container>
-
             <ng-container *ngIf="isShippingCart">
-                <button class="btn btn-icon cart-menu__cart-delete" (click)="removeProduct()"><i class="fas fa-trash-alt"></i></button>
+                <button class="btn btn-icon cart-menu__cart-delete" (click)="removeProduct()"><i
+                        class="fas fa-trash-alt"></i></button>
             </ng-container>
-
         </div>
     </div>
 </div>

@@ -1,3 +1,5 @@
+@import "../../../theme/colors";
+
 .card {
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +13,6 @@
 
 .card-image {
   flex: 0 0 60%;
-  // max-width: 60%;
   &__img {
     width: 100%;
     height: auto;
@@ -26,10 +27,45 @@
   justify-content: center;
   text-align: center;
   padding: 20px;
-
   .btn {
     margin-top: 30px;
   }
+}
+
+.cart-menu {
+  margin-top: 20px;
+  display: flex;
+
+  .button-container {
+    margin: auto;
+  }
+
+  &__cart-button {
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+  }
+
+  &__cart-delete {
+    background-color: $color-red;
+    color: $color-white;
+    border: none;
+  }
+
+  .btn {
+    width: 60px;
+    border-radius: 0px;
+  }
+
+  .btn-secondary {
+    border: 1px solid $color-grey-soft;
+    color: $color-grey;
+  }
+}
+
+.button-redirect {
+  width: 50%;
+  margin: auto;
 }
 
 @media screen and (max-width: 768px) {

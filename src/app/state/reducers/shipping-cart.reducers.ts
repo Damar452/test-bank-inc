@@ -6,7 +6,7 @@ import { addProduct, editProductQuantity, emptyCart, removeProduct } from '../ac
 
 // Estado inicial del carrito
 const initialState: ShippingCartState = {
-  products: []
+  products: JSON.parse(localStorage.getItem('cartProducts')!) || []
 };
 
 export const shippingCartReducer = createReducer(

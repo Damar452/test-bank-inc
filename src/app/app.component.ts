@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from './services/bussiness/categories/categories.service';
-import { Category } from './models/category.model';
-import { ProductsService } from './services/bussiness/products/products.service';
 import { Store } from '@ngrx/store';
-import { loadProducts, loadedProducts } from './state/actions/products.actions';
+import { loadProducts } from './state/actions/products.actions';
+import { AppState } from './state/app.state';
 
 @Component({
   selector: 'app-root',
@@ -12,33 +10,15 @@ import { loadProducts, loadedProducts } from './state/actions/products.actions';
 })
 export class AppComponent implements OnInit {
 
-  public categories: Category[] = [];
-
   constructor(
-    private categoriesService: CategoriesService,
-    private productsService: ProductsService,
-    private store: Store<any>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    this.getCategories();
     this.getProducts();
-  }
-
-  private getCategories() {
-    this.categoriesService.getCategories().subscribe(categoriesList => {
-      this.categories = categoriesList;
-      console.log(this.categories)
-    });
   }
 
   private getProducts() {
     this.store.dispatch(loadProducts())
-    this.productsService.getProducts().subscribe( products => {
-      console.log(products)
-      this.store.dispatch(loadedProducts({
-        products
-      }))
-    })
   }
 }

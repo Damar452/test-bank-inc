@@ -1,13 +1,47 @@
-<div class="products-container">
+<div class="products-container" *ngIf="(productsCartShipping$ | async).length > 0; else empty">
     <h1 class="products-list__title">Sus productos agregados al carrito</h1>
     <hr class="mb">
     <div class="products-list">
-        <app-product-card-general [isCartView]="true" *ngFor="let product of productsCartShipping$ | async" 
-            [product]="product"
-            (onClickImage)="goToDetail($event)" 
-            (onSaveInCart)="updateProductQuantity($event)"
-            (onRemoveProduct)="removeProduct($event)"
-            >
-        </app-product-card-general>
+        <div class="div-list">
+            <app-product-card-general [isCartView]="true" *ngFor="let product of productsCartShipping$ | async"
+                [product]="product" (onClickImage)="goToDetail($event)" (onSaveInCart)="updateProductQuantity($event)"
+                (onRemoveProduct)="removeProduct($event)">
+            </app-product-card-general>
+        </div>
+        <div class="div-detail">
+            <h1 class="title-form">Descripción de pago</h1>
+            <div class="count-description">
+                <h4>Total Item(s)</h4>
+                <h5>{{ totalPriceItems | currency}}</h5>
+            </div>
+            <div class="count-description">
+                <h4>Descuentos</h4>
+                <h5>{{ discounts | currency}}</h5>
+            </div>
+            <hr>
+            <div class="count-description">
+                <h4>Subtotal</h4>
+                <h5>{{ (totalPriceItems - discounts) | currency}}</h5>
+            </div>
+            <div class="count-description">
+                <h4>Envío</h4>
+                <h5>{{ shipment | currency }}</h5>
+            </div>
+            <hr>
+            <div class="count-description">
+                <h4>Total ({{totalItems}} items) </h4>
+                <h4>{{ ((totalPriceItems - discounts) + shipment) | currency }}</h4>
+            </div>
+            <button class="btn btn-primary button-form">Pagar</button>
+            <button class="btn btn-secondary button-form" (click)="goToPrincipal()">Seguir comprando</button>
+            <button class="btn btn-tertiary button-form" (click)="resetShippingCart()">Vaciar Carrito</button>
+        </div>
     </div>
 </div>
+
+<ng-template #empty>
+    <div class="empty">
+        <h1 class="empty__text">¡No ha agregado ningún artículo al carrito!</h1>
+        <button class="btn btn-primary empty__button" (click)="goToPrincipal()">Seguir comprando</button>
+    </div>
+</ng-template>

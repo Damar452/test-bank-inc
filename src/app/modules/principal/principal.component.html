@@ -4,6 +4,7 @@
 <div class="products-container">
     <h1 class="products-list__title">Lista de productos</h1>
     <hr>
+    <app-paginator></app-paginator>
     <div class="products-list">
         <app-product-card-general *ngFor="let product of products$ | async" 
             [product]="product"

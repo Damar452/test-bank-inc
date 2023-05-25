@@ -4,6 +4,9 @@ import { HeaderComponent } from './header/header.component';
 import { ImagesCarouselComponent } from './images-carousel/images-carousel.component';
 import { ProductCardGeneralComponent } from './product-card-general/product-card-general.component';
 import { ProductCardDetailComponent } from './product-card-detail/product-card-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -12,16 +15,20 @@ import { ProductCardDetailComponent } from './product-card-detail/product-card-d
     HeaderComponent,
     ImagesCarouselComponent,
     ProductCardGeneralComponent,
-    ProductCardDetailComponent
+    ProductCardDetailComponent,
+    PaginatorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
     ImagesCarouselComponent,
     ProductCardGeneralComponent,
-    ProductCardDetailComponent
-  ]
+    ProductCardDetailComponent,
+    PaginatorComponent
+  ],
+  providers: [HttpClientModule]
 })
 export class ComponentsModule { }

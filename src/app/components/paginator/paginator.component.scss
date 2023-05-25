@@ -1,0 +1,24 @@
+@import "../../../theme/colors"; 
+
+.paginator {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 30px;
+}
+
+.paginator-button {
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.paginator-info {
+  margin: 0 10px;
+  padding: 8px 15px;
+  background-color: $color-grey-soft;
+  border-radius: 5px;
+}
+

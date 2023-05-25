@@ -1,9 +1,80 @@
+@import "../../../theme/colors";
+
 .products-list {
+  display: flex;
+}
+
+.div-list {
+  flex-basis: 69%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.div-detail {
+  flex-basis: 29%;
+  padding: 50px;
+  border: 1px solid $color-grey-soft;
+  border-radius: 5px;
+  margin-left: 30px;
+  height: fit-content;
+
+  .title-form {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .button-form {
+    margin-top: 20px;
+  }
+
+  .count-description {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+  }
 }
 
 .mb {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.empty {
+  width: 25%;
+  margin: 0 auto;
+
+  &__text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+/* Media query para ajuste en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .products-list {
+    flex-direction: column-reverse;
+
+    &__title {
+      font-size: 20px;
+    }
+  }
+
+  .div-list,
+  .div-detail {
+    flex-basis: 100%;
+    box-shadow: none;
+  }
+
+  .div-detail {
+    margin: 0 auto;
+  }
+  .title-form {
+    font-size: 24px;
+  }
+
+  .empty {
+    width: 100%;
+  }
 }

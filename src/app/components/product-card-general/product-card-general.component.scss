@@ -3,7 +3,7 @@
 .product-card {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 300px;
   border: 1px solid $color-grey-soft;
   padding: 10px;
   border-radius: 5px;
@@ -11,18 +11,15 @@
 }
 
 .product-image {
-
   &__img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 5px;
   }
-
 }
 
 .product-details {
   margin-top: 10px;
-
   &__price {
     font-weight: 600;
     margin-top: 20px;
@@ -33,28 +30,23 @@
 .cart-menu {
   margin-top: 20px;
   display: flex;
-
   .button-container {
     margin-left: auto;
   }
-
   &__cart-button {
     background-color: $color-primary;
     color: $color-white;
     border: none;
   }
-
   &__cart-delete {
     background-color: $color-red;
     color: $color-white;
     border: none;
   }
-
   .btn {
     width: 45px;
     border-radius: 0px;
   }
-
   .btn-secondary {
     border: 1px solid $color-grey-soft;
     color: $color-grey;

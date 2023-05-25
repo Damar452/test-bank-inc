@@ -29,6 +29,16 @@
         border: none;
     }
 
+    &-secondary:hover {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+
+    &-tertiary {
+        color: $color-grey-soft;
+        border: none;
+    }
+
     &-icon {
         color: $color-grey;
         border: 1px solid $color-grey-soft;

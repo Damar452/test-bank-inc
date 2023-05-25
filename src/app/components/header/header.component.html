@@ -1,22 +1,28 @@
-<header>
+<header class="header">
     <div class="menu">
         <div class="principal">
             <h1 class="principal__title">Bank Inc <small>MarketPlace</small></h1>
         </div>
-        <div class="search-box">
-            <input class="search-box__input" type="search" placeholder="Buscar Producto por titulo"
-                name="search-products" id="input-search">
-            <button class="btn btn-icon search-box__button"><i class="fas fa-search"></i></button>
+        <form class="search-box" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            <input class="search-box__input" (search)="onClear()" formControlName="searchText" type="search"
+                placeholder="Buscar Producto por titulo" name="search-products" id="input-search">
+            <button type="submit" class="btn btn-icon search-box__button"><i class="fas fa-search"></i></button>
+
             <button class="btn btn-icon search-box__button" (click)="goToCartDetail()">
-                <i class="fas fa-shopping-cart"></i> 
+                <i class="fas fa-shopping-cart"></i>
                 <span *ngIf="(shippingCartQuantity$ | async) > 0" class="notification">
                     {{ shippingCartQuantity$ | async }}
-                </span> 
+                </span>
             </button>
-        </div>
+        </form>
+
         <div class="categories-container">
             <ul class="categories">
-                <li *ngFor="let category of categories">{{ category.name }}</li>
+                <li *ngFor="let category of categories"
+                    [ngClass]="(categorySelected === category.id ? 'category-selected ' : '') + 'categories__li'"
+                    (click)="getProductsBycategory(category.id)">
+                    {{ category.name | titlecase }}
+                </li>
             </ul>
         </div>
     </div>
