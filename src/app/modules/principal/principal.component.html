@@ -1,0 +1,16 @@
+<app-images-carousel [products]="products$ | async" [intervalTime]="3000"
+    (onClickImage)="goToDetail($event)"></app-images-carousel>
+
+<div class="products-container">
+    <h1 class="products-list__title">Lista de productos</h1>
+    <hr>
+    <div class="products-list">
+        <app-product-card-general *ngFor="let product of products$ | async" 
+            [product]="product"
+            (onClickImage)="goToDetail($event)" 
+            (onSaveInCart)="saveInCart($event)"
+            (onRemoveProduct)="removeProduct($event)"
+            >
+        </app-product-card-general>
+    </div>
+</div>

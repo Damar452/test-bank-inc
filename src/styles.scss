@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "theme/typography";
+@import "theme/inputs";
+@import "theme/buttons";
+@import "theme/colors";
+
+body,
+html {
+  font-family: "roboto", "arial", sans-serif;
+  margin: 0;
+}
+
+
+.image-zoom {
+  transition: transform 0.3s ease;
+}
+
+.image-zoom:hover {
+  transform: scale(1.05);
+}

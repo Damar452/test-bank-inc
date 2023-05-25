@@ -1,0 +1,12 @@
+<div class="carousel">
+    <div class="carousel-container" [style.transform]="'translateX(-' + slideIndex * 100 + '%)'">
+        <div class="slide" *ngFor="let product of products" (click)="clickImage(product.id)">
+            <img class="slide__image" [src]="product.images[0]" [alt]="product.title" >
+            <h1>{{ product.title }}</h1>
+            <h4>{{product.price | currency}}</h4>
+        </div>
+    </div>
+
+    <button class="prev-button" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+    <button class="next-button" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+</div>

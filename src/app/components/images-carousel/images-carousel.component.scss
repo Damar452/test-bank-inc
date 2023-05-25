@@ -1,0 +1,56 @@
+@import "../../../theme/colors"; 
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  margin: 20px 0;
+}
+
+.carousel-container {
+  display: flex;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__image {
+    width: 25%;
+    height: auto;
+    border-radius: 5px;
+  }
+}
+
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  font-size: 30px;
+  background-color: transparent;
+  color: $color-primary;
+  cursor: pointer;
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .slide img {
+    width: 100%;
+  }
+}

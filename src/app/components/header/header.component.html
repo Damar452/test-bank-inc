@@ -1,0 +1,23 @@
+<header>
+    <div class="menu">
+        <div class="principal">
+            <h1 class="principal__title">Bank Inc <small>MarketPlace</small></h1>
+        </div>
+        <div class="search-box">
+            <input class="search-box__input" type="search" placeholder="Buscar Producto por titulo"
+                name="search-products" id="input-search">
+            <button class="btn btn-icon search-box__button"><i class="fas fa-search"></i></button>
+            <button class="btn btn-icon search-box__button" (click)="goToCartDetail()">
+                <i class="fas fa-shopping-cart"></i> 
+                <span *ngIf="(shippingCartQuantity$ | async) > 0" class="notification">
+                    {{ shippingCartQuantity$ | async }}
+                </span> 
+            </button>
+        </div>
+        <div class="categories-container">
+            <ul class="categories">
+                <li *ngFor="let category of categories">{{ category.name }}</li>
+            </ul>
+        </div>
+    </div>
+</header>

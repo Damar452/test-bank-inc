@@ -1,0 +1,13 @@
+<div class="products-container">
+    <h1 class="products-list__title">Sus productos agregados al carrito</h1>
+    <hr class="mb">
+    <div class="products-list">
+        <app-product-card-general [isCartView]="true" *ngFor="let product of productsCartShipping$ | async" 
+            [product]="product"
+            (onClickImage)="goToDetail($event)" 
+            (onSaveInCart)="updateProductQuantity($event)"
+            (onRemoveProduct)="removeProduct($event)"
+            >
+        </app-product-card-general>
+    </div>
+</div>
