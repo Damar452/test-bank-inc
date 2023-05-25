@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'principal',
     loadChildren: () => import('./modules/principal/principal.module').then((m) => m.PrincipalModule),
   },
   {
@@ -13,6 +13,11 @@ const routes: Routes = [
   {
     path: 'cart-detail',
     loadChildren: () => import('./modules/cart-detail/cart-detail.module').then((m) => m.CartDetailModule),
+  },
+  {
+    path: '',
+    redirectTo: 'principal',
+    pathMatch: 'full'
   }
 ];
 
