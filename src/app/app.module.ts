@@ -11,6 +11,7 @@ import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { CartEffects } from './state/effects/shipping-cart.effects';
 import { ProductEffects } from './state/effects/products.effects';
+import { InterceptorService } from './services/interceptors/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,13 @@ import { ProductEffects } from './state/effects/products.effects';
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
     EffectsModule.forRoot([CartEffects, ProductEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

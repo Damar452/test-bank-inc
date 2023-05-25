@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
@@ -13,7 +13,7 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  public getCategories(): Observable<Category[]>  {
-    return this.http.get<Category[]>(this.api);
+  public getCategories(): Observable<HttpResponse<Category[]>>   {
+    return this.http.get<Category[]>(this.api, { observe: 'response' });
   }
 }

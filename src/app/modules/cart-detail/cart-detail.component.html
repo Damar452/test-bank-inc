@@ -32,7 +32,7 @@
                 <h4>Total ({{totalItems}} items) </h4>
                 <h4>{{ ((totalPriceItems - discounts) + shipment) | currency }}</h4>
             </div>
-            <button class="btn btn-primary button-form">Pagar</button>
+            <button class="btn btn-primary button-form" (click)="onPay()">Pagar</button>
        
             <div class="export-files">
                 <h4>Exportar Carrito</h4>

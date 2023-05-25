@@ -19,7 +19,7 @@ export class ProductEffects {
       ofType(loadProducts),
       switchMap((action) =>
         this.productService.getProducts(action.offset).pipe(
-          map(products => loadedProducts({ products }))
+          map(({body}) => loadedProducts({ products: body!  }))
         )
       )
     )
@@ -30,7 +30,7 @@ export class ProductEffects {
       ofType(loadProductsByTitle),
       switchMap(action =>
         this.productService.getProductByTitle(action.title, action.offset).pipe(
-          map(products => loadedProducts({ products }))
+          map(({body}) => loadedProducts({ products: body! }))
         )
       )
     )
@@ -41,7 +41,7 @@ export class ProductEffects {
       ofType(loadProductsByCategory),
       switchMap(action =>
         this.productService.getProductsByCategory(action.id, action.offset).pipe(
-          map(products => loadedProducts({ products }))
+          map(({body}) => loadedProducts({ products: body! }))
         )
       )
     )

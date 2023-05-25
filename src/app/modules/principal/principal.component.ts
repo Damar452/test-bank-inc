@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Action, Store, select } from '@ngrx/store';
-import { Observable, filter } from 'rxjs';
+import { Action, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
 import { selectLastAction, selectListProducts } from '../../state/selectors/products.selectors';
 import { ProductCart } from 'src/app/models/product.model';

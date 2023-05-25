@@ -1,14 +1,14 @@
 <header class="header">
     <div class="menu">
         <div class="principal">
-            <h1 class="principal__title">Bank Inc <small>MarketPlace</small></h1>
+            <h1 class="principal__title" (click)="goToByUrl('/')">Bank Inc <small>MarketPlace</small></h1>
         </div>
         <form class="search-box" [formGroup]="searchForm" (ngSubmit)="onSearch()">
             <input class="search-box__input" (search)="onClear()" formControlName="searchText" type="search"
                 placeholder="Buscar Producto por titulo" name="search-products" id="input-search">
             <button type="submit" class="btn btn-icon search-box__button"><i class="fas fa-search"></i></button>
 
-            <button class="btn btn-icon search-box__button" (click)="goToCartDetail()">
+            <button class="btn btn-icon search-box__button" (click)="goToByUrl('/cart-detail')">
                 <i class="fas fa-shopping-cart"></i>
                 <span *ngIf="(shippingCartQuantity$ | async) > 0" class="notification">
                     {{ shippingCartQuantity$ | async }}

@@ -36,8 +36,8 @@ export class HeaderComponent implements OnInit {
     this.getCategories();
   }
 
-  public goToCartDetail() {
-    this.router.navigate(['/cart-detail'])
+  public goToByUrl(url: string) {
+    this.router.navigate([url])
   }
 
   public onSearch() {
@@ -67,8 +67,8 @@ export class HeaderComponent implements OnInit {
   }
 
   private getCategories() {
-    this.categoriesService.getCategories().subscribe(categoriesList => {
-      this.categories = categoriesList;
+    this.categoriesService.getCategories().subscribe(({body}) => {
+      this.categories = body!;
     });
   }
 

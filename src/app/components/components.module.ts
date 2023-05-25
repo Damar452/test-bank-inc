@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { GeneralModalComponent } from './general-modal/general-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     ImagesCarouselComponent,
     ProductCardGeneralComponent,
     ProductCardDetailComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    GeneralModalComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     ImagesCarouselComponent,
     ProductCardGeneralComponent,
     ProductCardDetailComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    GeneralModalComponent
   ],
   providers: [
     HttpClientModule
